@@ -15,6 +15,9 @@ typedef enum  {
 	//Gripper
 	CMD_SET_GRIPPER_PIN = 0x20,
 	CMD_CONTROL_GRIPPER = 0x21,
+	//Stepper
+	CMD_SET_STEPPER_PINS = 0x22,
+	CMD_STEP_STEPPER = 0x23,
 	//Sensors
 	CMD_SET_SENSOR_PIN = 0x30,
 	CMD_SENSOR_STATE = 0x31,

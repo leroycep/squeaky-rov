@@ -28,7 +28,7 @@ void recieved_command(CommunicationCommand command, int args[])
 		{
 			set_safety_timeout(args[0] | ((args[1] & 0xFF) << 4));
 		} break;
-		// Steppers
+		// Servo
 		case CMD_SET_GRIPPER_PIN:
 		{
 			set_servo_pin(args[0]);
@@ -39,6 +39,16 @@ void recieved_command(CommunicationCommand command, int args[])
 		case CMD_CONTROL_GRIPPER:
 		{
 			control_servo(args[0]);
+		} break;
+		// Steppers
+		case CMD_SET_STEPPER_PINS:
+		{
+			stepper_step = args[0];
+			stepper_dir = args[1];
+		} break;
+		case CMD_STEP_STEPPER:
+		{
+			stepper_move(args[0]);
 		} break;
 		// Sensors
 		case CMD_SET_SENSOR_PIN:
