@@ -1,4 +1,5 @@
 
+/// !!! LOGGING !!!
 
 void respond_log_error(String message) {
 	Serial.write(0x10); // Response id 'log_error'
@@ -22,4 +23,14 @@ void respond_log_debug(String message) {
 	Serial.write(0x13); // Response id 'log_debug'
 	Serial.write(message.length()); // Write the number of bytes in the message
 	Serial.write(message); // Write the message
+}
+
+/// !!! SENSORS !!!
+
+void response_sensor_voltage(int voltage) {
+	Serial.write(0x20); // Response id 'sensor_voltage'
+	Serial.write((byte)voltage>>24);
+	Serial.write((byte)voltage>>16);
+	Serial.write((byte)voltage>>8);
+	Serial.write((byte)voltage);
 }
