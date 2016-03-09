@@ -26,7 +26,6 @@ void sense_servo()
 {
 	if(gripper_set)
 	{
-		Serial.print("0 Servo");
-		Serial.println(gripper.read());
+		response_log_debug("Sense servo "+gripper.read());
 	}
 }

@@ -30,8 +30,5 @@ void set_sensor_state(int sensor, int state)
 void sense_voltage()
 {
 	int raw = analogRead(sensor_pin[SENSOR_VOLTAGE]);
-	float vout = raw / 1024.0f * 6;
-	Serial.print(RESPONSE_SENSOR); Serial.print("\t");
-	Serial.print(SENSOR_VOLTAGE); Serial.print("\t");
-	Serial.print(vout); Serial.print("\n");
+	response_sensor_voltage(raw);
 }
