@@ -64,6 +64,8 @@ void update()
 }
 
 
+// Increases the frequency of the arduino mega.
+// This is needed to prevent the motor drivers from blowing up.
 void change_pwm_frequency()
 {
 	int my_eraser = 7;
