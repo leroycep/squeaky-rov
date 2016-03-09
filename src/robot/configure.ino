@@ -13,16 +13,19 @@ struct Sensor {
 	bool state;
 };
 
-struct Robot {
+class Robot {
 	int maximum_pwm;
 	int minimum_pwm;
 	int safety_timeout;
 	Motor motors[CONFIGURE_MAX_MOTORS];
 	Sensor sensors[CONFIGURE_MAX_SENSORS];
 	byte multiplexerPins[4];
+
+	public:
+		new();
 };
 
-Robot configure_new_robot() {
+public Robot::new() {
 	Robot robot;
 
 	robot.maximum_pwm = 175;
@@ -31,5 +34,3 @@ Robot configure_new_robot() {
 
 	return robot;
 }
-
-Robot rov = configure_new_robot();
