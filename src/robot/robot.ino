@@ -1,4 +1,5 @@
 #include "communication.h"
+#include "received.h"
 
 int command_state = 0;
 int command = -1;
