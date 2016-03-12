@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include "misc.h"
 #include "received.h"
 #include "communication.h"
 #include "response.h"
@@ -36,8 +35,8 @@ void Command::setMotorPins(int motorId, int pwmPin, int leftPin, int rightPin) {
 }
 
 void Command::controlMotor(int motorId, int flags, int pwm) {
-	bool a = flag(0x1, flags);
-	bool b = flag(0x2, flags);
+	bool a = flags & 0x1 == 0x01;
+	bool b = flags & 0x2 == 0x02;
 	Response::log_warning("controlMotor not yet implemented");
 }
 
