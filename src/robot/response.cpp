@@ -6,25 +6,25 @@ namespace Response {
 	void log_error(String message) {
 		Serial.write(RESPONSE_LOG_ERROR); // Response id 'log_error'
 		Serial.write(message.length()); // Write the number of bytes in the message
-		Serial.write(message.length()); // Write the message
+		Serial.print(message; // Write the message
 	}
 
 	void log_warning(String message) {
 		Serial.write(RESPONSE_LOG_WARNING); // Response id 'log_warning'
 		Serial.write(message.length()); // Write the number of bytes in the message
-		Serial.write(message.length()); // Write the message
+		Serial.print(message; // Write the message
 	}
 
 	void log_info(String message) {
 		Serial.write(RESPONSE_LOG_INFO); // Response id 'log_info'
 		Serial.write(message.length()); // Write the number of bytes in the message
-		Serial.write(message.length()); // Write the message
+		Serial.print(message; // Write the message
 	}
 
 	void log_debug(String message) {
 		Serial.write(RESPONSE_LOG_DEBUG); // Response id 'log_debug'
 		Serial.write(message.length()); // Write the number of bytes in the message
-		Serial.write(message.length()); // Write the message
+		Serial.print(message; // Write the message
 	}
 
 	/// !!! SENSORS !!!
