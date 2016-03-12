@@ -8,11 +8,13 @@ namespace Robot {
 		minPWM = 10;
 		safety_timeout = 2;
 
+		motors = new Motor*[CONFIGURE_MAX_MOTORS];
 		for (int i=0; i<CONFIGURE_MAX_MOTORS; i++) {
-			motors[i] = Motor{};
+			motors[i] = new Motor();
 		}
 
-		sensors[0] = Sensor::Voltage {};
+		sensors = new Sensor::Sensor*[CONFIGURE_MAX_SENSORS];
+		sensors[0] = new Sensor::Voltage();
 	}
 
 	void Robot::setPWMBounds(int low, int high) {
@@ -32,19 +34,17 @@ namespace Robot {
 	}
 
 	Motor* Robot::getMotor(int id) {
-		return &motors[id];
+		return motors[id];
 	}
 
 	Sensor::Sensor* Robot::getSensor(int id) {
-		return &sensors[id];
+		return sensors[id];
 	}
 
 	void Robot::update() {
 		for (int i=0; i<CONFIGURE_MAX_MOTORS; i++) {
-			motors[i].update();
+			motors[i]->update();
 		}
-		for (int i=0; i<CONFIGURE_MAX_SENSORS; i++) {
-			sensors[i].update();
-		}
+		// TODO: Implement sensor updating later
 	}
 }

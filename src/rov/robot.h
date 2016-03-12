@@ -2,7 +2,6 @@
 #ifndef _ROBOT_H_
 #define _ROBOT_H_
 
-#include "robot.h"
 #include "motor.h"
 #include "sensors/sensor.h"
 
@@ -14,8 +13,8 @@ namespace Robot {
 		int maxPWM;
 		int minPWM;
 		int safety_timeout;
-		Motor motors[CONFIGURE_MAX_MOTORS];
-		Sensor::Sensor sensors[CONFIGURE_MAX_SENSORS];
+		Motor** motors;
+		Sensor::Sensor** sensors;
 		int multiplexerPins[4];
 
 	  public:

@@ -1,5 +1,7 @@
 #include "communication.h"
 #include "received.h"
+#include "robot.h"
+#include "state.h"
 
 int command_state = 0;
 int command = -1;
@@ -54,6 +56,7 @@ void check_for_commands() /// State machine!
 }
 
 void update() {
+	robot->update();
 }
 
 

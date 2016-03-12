@@ -6,8 +6,6 @@
 
 namespace Sensor {
 	class Voltage: public Sensor {
-	  public:
-	  	void update();
 	};
 }
 

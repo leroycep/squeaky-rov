@@ -11,7 +11,6 @@ namespace Sensor {
 	  public:
 	  	void setPin(int);
 	  	void setState(bool);
-	  	void update();
 	};
 }
 

@@ -1,6 +1,7 @@
 
 #include <Arduino.h>
 #include "sensor.h"
+#include "../response.h"
 
 namespace Sensor {
 	void Sensor::setPin(int p) {
@@ -10,8 +11,5 @@ namespace Sensor {
 
 	void Sensor::setState(bool on) {
 		state = on;
-	}
-
-	void Sensor::update() {
 	}
 }
