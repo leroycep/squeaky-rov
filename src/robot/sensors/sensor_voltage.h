@@ -5,7 +5,10 @@
 #include "sensor.h"
 
 namespace Sensor {
-	class Voltage: Sensor {};
+	class Voltage: public Sensor {
+	  public:
+	  	void update();
+	};
 }
 
 #endif

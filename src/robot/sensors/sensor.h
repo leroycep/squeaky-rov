@@ -4,11 +4,12 @@
 
 namespace Sensor {
 	class Sensor {
-		byte pin;
+	  protected:
+		int pin;
 		bool state;
 
 	  public:
-	  	void setPin(byte);
+	  	void setPin(int);
 	  	void setState(bool);
 	  	void update();
 	};

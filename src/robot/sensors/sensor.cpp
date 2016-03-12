@@ -1,14 +1,17 @@
 
+#include <Arduino.h>
 #include "sensor.h"
 
-void Sensor::setPin(byte p) {
-	pin = p;
-	setOutput(p, INPUT);
-}
+namespace Sensor {
+	void Sensor::setPin(int p) {
+		pin = p;
+		pinMode(p, INPUT);
+	}
 
-void Sensor::setState(bool on) {
-	state = on;
-}
+	void Sensor::setState(bool on) {
+		state = on;
+	}
 
-void Sensor::update() {
+	void Sensor::update() {
+	}
 }

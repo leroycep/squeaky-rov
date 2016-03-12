@@ -1,6 +1,7 @@
 
 #include "motor.h"
 #include "sensors/sensor.h"
+#include "sensors/sensor_voltage.h"
 
 #define CONFIGURE_MAX_MOTORS 8
 #define CONFIGURE_MAX_SENSORS 1
@@ -20,6 +21,7 @@ class Robot {
 	void setMultiplexerPins(byte, byte, byte, byte);
 	Motor* getMotor(int);
 	Sensor::Sensor* getSensor(int);
+	void update();
 };
 
 Robot::Robot() {
@@ -31,7 +33,7 @@ Robot::Robot() {
 		motors[i] = Motor{};
 	}
 
-	sensors[0] = Sensor::Voltage::new();
+	sensors[0] = Sensor::Voltage {};
 }
 
 void Robot::setPWMBounds(byte low, byte high) {
@@ -54,6 +56,15 @@ Motor* Robot::getMotor(int id) {
 	return &motors[id];
 }
 
-Sensor* Robot::getSensor(int id) {
+Sensor::Sensor* Robot::getSensor(int id) {
 	return &sensors[id];
+}
+
+void Robot::update() {
+	for (int i=0; i<CONFIGURE_MAX_MOTORS; i++) {
+		motors[i].update();
+	}
+	for (int i=0; i<CONFIGURE_MAX_SENSORS; i++) {
+		sensors[i].update();
+	}
 }

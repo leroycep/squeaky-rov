@@ -1,63 +1,51 @@
 #include "misc.h"
 
-void recieved_command(CommunicationCommand command, int args[])
+void recieved_command(byte command, int args[])
 {
 	switch(command)
 	{
 		// Motors
-		case CMD_SET_MOTOR_PINS:
-		{
+		case CMD_SET_MOTOR_PINS: {
 			recieved_command_set_motor_pins(args[0], args[1], args[2]);
 		} break;
-		case CMD_CONTROL_MOTOR:
-		{
+		case CMD_CONTROL_MOTOR: {
 			recieved_control_motor(args[0], args[1]);
 		} break;
-		case CMD_SET_PWM_BOUNDS:
-		{
+		case CMD_SET_PWM_BOUNDS: {
 			set_minimum_pwm(args[0]);
 			set_maximum_pwm(args[1]);
 			response_log_info("Set pwm bounds to ["+String(args[0])+","+String(args[1])+"]");
 		} break;
-		case CMD_SET_SAFETY_TIMEOUT:
-		{
+		case CMD_SET_SAFETY_TIMEOUT: {
 			set_safety_timeout(args[0] | ((args[1] & 0xFF) << 4));
 		} break;
 		// Steppers
-		case CMD_SET_GRIPPER_PIN:
-		{
+		case CMD_SET_GRIPPER_PIN: {
 			set_servo_pin(args[0]);
 			response_log_info("Set gripper pin to "+args[0]);
 		} break;
-		case CMD_CONTROL_GRIPPER:
-		{
+		case CMD_CONTROL_GRIPPER: {
 			control_servo(args[0]);
 		} break;
 		// Sensors
-		case CMD_SET_SENSOR_PIN:
-		{
-			set_sensor_pin(args[0], args[1]);
-			response_log_info("Set sensor "+String(args[0])+" to pin "+String(args[1]));
+		case CMD_SET_SENSOR_PIN: {
+			response_log_info("Command has not been implemented");
 		} break;
-		case CMD_SENSOR_STATE:
-		{
-			set_sensor_state(args[0], args[1]);
+		case CMD_SENSOR_STATE: {
+			response_log_info("Command has not been implemented");
 		} break;
 		// Cameras
-		case CMD_SET_CAMERA_PINS:
-		{
+		case CMD_SET_CAMERA_PINS: {
 			set_camera_pins(args[0], args[1], args[2], args[3]);
 		} break;
-		case CMD_SWITCH_CAMERA:
-		{
+		case CMD_SWITCH_CAMERA: {
 			switch_camera(args[0]);
 		} break;
 		// Misc
 		case CMD_ECHO: {
 			recieved_command_echo(args[0]);
 		} break;
-		default:
-		{
+		default: {
 			response_log_warning("Unimplemented command "+command);
 		} break;
 	}
