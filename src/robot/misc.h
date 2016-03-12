@@ -1,12 +1,7 @@
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include <stdbool.h>
+#ifndef _MISC_H_
+#define _MISC_H_
 
 bool flag(int bit, int flags);
 
-#ifdef __cplusplus
-}
 #endif
