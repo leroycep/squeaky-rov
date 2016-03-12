@@ -17,7 +17,8 @@ void recieved_command(CommunicationCommand command, int args[])
 		{
 			set_minimum_pwm(args[0]);
 			set_maximum_pwm(args[1]);
-			response_log_info("Set pwm bounds to ["+args[0]+","+args[1]+"]");
+			String response = "Set pwm bounds to [";
+			response_log_info(response+args[0]+","+args[1]+"]");
 		} break;
 		case CMD_SET_SAFETY_TIMEOUT:
 		{
@@ -37,7 +38,8 @@ void recieved_command(CommunicationCommand command, int args[])
 		case CMD_SET_SENSOR_PIN:
 		{
 			set_sensor_pin(args[0], args[1]);
-			response_log_info("Set sensor "+args[0]+" to pin "+args[1]);
+			String response = "Set sensor ";
+			response_log_info(response+args[0]+" to pin "+args[1]);
 		} break;
 		case CMD_SENSOR_STATE:
 		{
@@ -68,7 +70,8 @@ void recieved_command_set_motor_pins(int byte_one, int pin_a, int pin_b)
 	int motor_id = byte_one >> 4 & 0xF;
 	int pin_pwm = byte_one & 0xF;
 
-	response_log_info("Set motor "+motor_id+" to A:"+pin_a+", B:"+pin_b+", PWM:"+pin_pwm);
+	String response = "Set motor ";
+	response_log_info(response+motor_id+" to A:"+pin_a+", B:"+pin_b+", PWM:"+pin_pwm);
 
 	set_motor_pins(motor_id, pin_a, pin_b, pin_pwm);
 }
