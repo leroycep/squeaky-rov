@@ -2,6 +2,7 @@
 #include "received.h"
 #include "communication.h"
 #include "response.h"
+#include "state.h"
 
 void recieved_command(int command, int args[])
 {
@@ -30,24 +31,24 @@ void recieved_command(int command, int args[])
 }
 
 void Command::setMotorPins(int motorId, int pwmPin, int leftPin, int rightPin) {
+	robot->getMotor(motorId)->setPins(leftPin, rightPin, pwmPin);
 	Response::log_info("Set motor "+String(motorId)+" to A:"+String(leftPin)+", B:"+String(rightPin)+", PWM:"+String(pwmPin));
-	Response::log_warning("SetMotorPin not yet implemented.");
 }
 
 void Command::controlMotor(int motorId, int flags, int pwm) {
 	bool a = flags & 0x1 == 0x01;
 	bool b = flags & 0x2 == 0x02;
-	Response::log_warning("controlMotor not yet implemented");
+	robot->getMotor(motorId)->set(a, b, pwm);
 }
 
 void Command::setPWMBounds(int lower, int upper) {
+	robot->setPWMBounds(lower, upper)
 	Response::log_info("Set pwm bounds to ["+String(lower)+","+String(upper)+"]");
-	Response::log_warning("setPWMBounds not yet implemented");
 }
 
 void Command::setSafetyTimeout(int timeout) {
+	robot.setSafetyTimeout(timeout);
 	Response::log_info("Set safety timeout to "+String(timeout)+" milliseconds");
-	Response::log_warning("setSafetyTimeout not yet implemented");
 }
 
 void Command::setGripperPin(int pin) {
