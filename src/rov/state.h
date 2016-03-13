@@ -4,6 +4,6 @@
 
 #include "robot.h"
 
-Robot::Robot* robot = new Robot();
+Robot::Robot* robot = new Robot::Robot();
 
 #endif
