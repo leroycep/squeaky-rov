@@ -50,7 +50,7 @@ void check_for_commands() /// State machine!
 		}
 	}
 	if(command_state==3) { // Parse the command
-		recieved_command(command, buffer);
+		received_command(command, buffer);
 		command_state=0;
 	}
 }
