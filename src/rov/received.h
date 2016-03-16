@@ -2,9 +2,9 @@
 #ifndef _RECEIVED_H_
 #define _RECEIVED_H_
 
-void received_command(int command, int args[]);
 
 namespace Command {
+	void received(int command, int args[]);
 	void setMotorPins(int, int, int, int);
 	void controlMotor(int, int, int);
 	void setPWMBounds(int, int);

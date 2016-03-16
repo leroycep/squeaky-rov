@@ -2,9 +2,9 @@
 #include "received.h"
 #include "communication.h"
 #include "response.h"
-#include "state.h"
+#include "robot.h"
 
-void recieved_command(int command, int args[])
+void Command::received(int command, int args[])
 {
 	switch(command)
 	{
@@ -31,23 +31,23 @@ void recieved_command(int command, int args[])
 }
 
 void Command::setMotorPins(int motorId, int pwmPin, int leftPin, int rightPin) {
-	robot->getMotor(motorId)->setPins(leftPin, rightPin, pwmPin);
+	Robot::Robot::instance()->getMotor(motorId)->setPins(leftPin, rightPin, pwmPin);
 	Response::log_info("Set motor "+String(motorId)+" to A:"+String(leftPin)+", B:"+String(rightPin)+", PWM:"+String(pwmPin));
 }
 
 void Command::controlMotor(int motorId, int flags, int pwm) {
 	bool a = flags & 0x1 == 0x01;
 	bool b = flags & 0x2 == 0x02;
-	robot->getMotor(motorId)->set(a, b, pwm);
+	Robot::Robot::instance()->getMotor(motorId)->set(a, b, pwm);
 }
 
 void Command::setPWMBounds(int lower, int upper) {
-	robot->setPWMBounds(lower, upper)
+	Robot::Robot::instance()->setPWMBounds(lower, upper);
 	Response::log_info("Set pwm bounds to ["+String(lower)+","+String(upper)+"]");
 }
 
 void Command::setSafetyTimeout(int timeout) {
-	robot.setSafetyTimeout(timeout);
+	Robot::Robot::instance()->setSafetyTimeout(timeout);
 	Response::log_info("Set safety timeout to "+String(timeout)+" milliseconds");
 }
 

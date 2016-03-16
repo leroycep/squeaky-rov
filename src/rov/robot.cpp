@@ -47,4 +47,10 @@ namespace Robot {
 		}
 		// TODO: Implement sensor updating later
 	}
+
+	Robot* Robot::instance() {
+		if(!s_instance)
+			s_instance = new Robot();
+		return s_instance;
+	}
 }

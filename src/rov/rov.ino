@@ -1,13 +1,14 @@
 #include "communication.h"
 #include "received.h"
 #include "robot.h"
-#include "state.h"
 
 int command_state = 0;
 int command = -1;
 int bytes_left = 0;
-int buffer[4];
+int command_buffer[4];
 int buffer_pos = 0;
+
+Robot::Robot* Robot::Robot::s_instance = 0;
 
 void setup()
 {
@@ -40,7 +41,7 @@ void check_for_commands() /// State machine!
 	if(command_state==2) {// Read bytes into the buffer
 		while (Serial.available() > 0 && bytes_left>0)
 		{
-			buffer[buffer_pos] = Serial.read();
+			command_buffer[buffer_pos] = Serial.read();
 			buffer_pos++;
 			bytes_left--;
 		}
@@ -50,13 +51,13 @@ void check_for_commands() /// State machine!
 		}
 	}
 	if(command_state==3) { // Parse the command
-		received_command(command, buffer);
+		Command::received(command, command_buffer);
 		command_state=0;
 	}
 }
 
 void update() {
-	robot->update();
+	Robot::Robot::instance()->update();
 }
 
 
