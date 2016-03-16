@@ -77,5 +77,5 @@ void Command::switchCamera(int camera) {
 }
 
 void Command::echo(int byte) {
-	Response::log_info(String(byte));
+	Response::log_info(String((char)(byte)));
 }
