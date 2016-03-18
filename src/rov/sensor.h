@@ -5,12 +5,18 @@
 namespace Sensor {
 	class Sensor {
 	  protected:
-		int pin;
 		bool state;
 
 	  public:
-	  	void setPin(int);
 	  	void setState(bool);
+	};
+
+	class Voltage: public Sensor {
+		int pin;
+
+	  public:
+	  	void setPin(int);
+	  	void update();
 	};
 }
 

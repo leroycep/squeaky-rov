@@ -1,6 +1,5 @@
 
 #include "robot.h"
-#include "sensors/sensor_voltage.h"
 
 namespace Robot {
 	Robot::Robot() {
@@ -8,13 +7,12 @@ namespace Robot {
 		minPWM = 10;
 		safety_timeout = 2;
 
-		motors = new Motor*[CONFIGURE_MAX_MOTORS];
-		for (int i=0; i<CONFIGURE_MAX_MOTORS; i++) {
+		motors = new Motor*[MAX_MOTORS];
+		for (int i=0; i<MAX_MOTORS; i++) {
 			motors[i] = new Motor();
 		}
 
-		sensors = new Sensor::Sensor*[CONFIGURE_MAX_SENSORS];
-		sensors[0] = new Sensor::Voltage();
+		voltage_sensor = new Sensor::Voltage();
 	}
 
 	void Robot::setPWMBounds(int low, int high) {
@@ -37,15 +35,15 @@ namespace Robot {
 		return motors[id];
 	}
 
-	Sensor::Sensor* Robot::getSensor(int id) {
-		return sensors[id];
+	Sensor::Voltage* Robot::getVoltageSensor() {
+		return voltage_sensor;
 	}
 
 	void Robot::update() {
-		for (int i=0; i<CONFIGURE_MAX_MOTORS; i++) {
+		for (int i=0; i<MAX_MOTORS; i++) {
 			motors[i]->update();
 		}
-		// TODO: Implement sensor updating later
+		voltage_sensor->update();
 	}
 
 	Robot* Robot::instance() {

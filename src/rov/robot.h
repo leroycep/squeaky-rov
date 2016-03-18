@@ -3,10 +3,10 @@
 #define _ROBOT_H_
 
 #include "motor.h"
-#include "sensors/sensor.h"
+#include "sensor.h"
 
-#define CONFIGURE_MAX_MOTORS 8
-#define CONFIGURE_MAX_SENSORS 1
+#define MAX_MOTORS 8
+#define MAX_SENSORS 1
 
 namespace Robot {
 	class Robot {
@@ -15,7 +15,7 @@ namespace Robot {
 		int minPWM;
 		int safety_timeout;
 		Motor** motors;
-		Sensor::Sensor** sensors;
+		Sensor::Voltage* voltage_sensor;
 		int multiplexerPins[4];
 		Robot();
 
@@ -24,7 +24,7 @@ namespace Robot {
 		void setSafetyTimeout(int);
 		void setMultiplexerPins(int, int, int, int);
 		Motor* getMotor(int);
-		Sensor::Sensor* getSensor(int);
+		Sensor::Voltage* getVoltageSensor();
 		void update();
 		static Robot* instance();
 	};
