@@ -64,6 +64,19 @@ void update() {
 // Increases the frequency of the arduino mega.
 // This is needed to prevent the motor drivers from blowing up.
 void change_pwm_frequency() {
+	/* Each timer can be accessed by the variable TCCRnB, where n is the timer
+	   number. For example, TCCR0B is the variable for timer 0.
+			|Timer|Pins   |
+			|-----|-------|
+			|0    |13, 4  |
+			|1    |12, 11 |
+			|2    |10, 9  |
+			|3    |5, 3, 2|
+			|4    |8, 7, 6|
+	*/
+
+	// Erase first three bits of timer number
+	// 7, because 7 = 0b11100000
 	int my_eraser = 7;
 	TCCR0B &= ~my_eraser;
 	TCCR1B &= ~my_eraser;
@@ -71,6 +84,16 @@ void change_pwm_frequency() {
 	TCCR3B &= ~my_eraser;
 	TCCR4B &= ~my_eraser;
 
+	/* The third column is for timer 0, which has a different set of frequencies.
+	|prescalar|frequency|frequency|
+	|---------|---------|---------|
+	|1        |31000    |62000    |
+	|2        |4000     |7800     |
+	|3        |490      |980      |
+	|4        |120      |250      |
+	|5        |30       |60       |
+	|6        |<20      |<20      |
+	*/
 	int my_prescalar = 2;
 	TCCR0B |= 5;
 	TCCR1B |= my_prescalar;
