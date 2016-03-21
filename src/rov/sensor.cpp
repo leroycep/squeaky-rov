@@ -14,7 +14,9 @@ namespace Sensor {
 	}
 
 	void Voltage::update(void){
-		int raw = analogRead(pin);
-		Response::sensor_voltage(raw);
+		if (state) {
+			int raw = analogRead(pin);
+			Response::sensor_voltage(raw);
+		}
 	}
 }

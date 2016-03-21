@@ -36,8 +36,8 @@ void Command::setMotorPins(int motorId, int pwmPin, int leftPin, int rightPin) {
 }
 
 void Command::controlMotor(int motorId, int flags, int pwm) {
-	bool a = flags & 0x1 == 0x01;
-	bool b = flags & 0x2 == 0x02;
+	bool a = (flags & 0x1) == 0x1;
+	bool b = (flags & 0x2) == 0x2;
 	Robot::Robot::instance()->getMotor(motorId)->set(a, b, pwm);
 }
 
