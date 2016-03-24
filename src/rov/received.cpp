@@ -42,13 +42,11 @@ void Command::controlMotor(int motorId, int flags, int pwm) {
 }
 
 void Command::setPWMBounds(int lower, int upper) {
-	Robot::Robot::instance()->setPWMBounds(lower, upper);
-	Response::log_info("Set pwm bounds to ["+String(lower)+","+String(upper)+"]");
+	Response::log_warning("Command SET_PWM_BOUNDS is deprecated");
 }
 
 void Command::setSafetyTimeout(int timeout) {
-	Robot::Robot::instance()->setSafetyTimeout(timeout);
-	Response::log_info("Set safety timeout to "+String(timeout)+" milliseconds");
+	Response::log_warning("Command SET_SAFETY_TIMEOUT is deprecated");
 }
 
 void Command::setGripperPin(int pin) {

@@ -3,25 +3,12 @@
 
 namespace Robot {
 	Robot::Robot() {
-		maxPWM = 175;
-		minPWM = 10;
-		safety_timeout = 2;
-
 		motors = new Motor*[MAX_MOTORS];
 		for (int i=0; i<MAX_MOTORS; i++) {
 			motors[i] = new Motor();
 		}
 
 		voltage_sensor = new Sensor::Voltage();
-	}
-
-	void Robot::setPWMBounds(int low, int high) {
-		minPWM = low;
-		maxPWM = high;
-	}
-
-	void Robot::setSafetyTimeout(int timeout) {
-		safety_timeout = timeout;
 	}
 
 	void Robot::setMultiplexerPins(int one, int two, int three, int four) {
