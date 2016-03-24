@@ -22,6 +22,7 @@
 
 //Misc
 #define CMD_ECHO 0xF0
+#define CMD_VERSION 0xF1
 
 namespace Communication {
 	int getCommandLength(int);

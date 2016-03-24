@@ -14,6 +14,7 @@ namespace Communication {
 			case CMD_SET_CAMERA_PINS: return 4;
 			case CMD_SWITCH_CAMERA: return 1;
 			case CMD_ECHO: return 1;
+			case CMD_VERSION: return 0;
 			default: return 0;
 		}
 	}

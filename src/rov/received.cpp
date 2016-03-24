@@ -3,6 +3,7 @@
 #include "communication.h"
 #include "response.h"
 #include "robot.h"
+#include "meta.h"
 
 void Command::received(int command, int args[])
 {
@@ -24,6 +25,7 @@ void Command::received(int command, int args[])
 		case CMD_SWITCH_CAMERA: Command::switchCamera(args[0]); break;
 		// Misc
 		case CMD_ECHO: Command::echo(args[0]); break;
+		case CMD_VERSION: Command::version(); break;
 		default: {
 			Response::log_warning("Unimplemented command "+command);
 		} break;
@@ -76,4 +78,8 @@ void Command::switchCamera(int camera) {
 
 void Command::echo(int byte) {
 	Response::log_info(String((char)(byte)));
+}
+
+void Command::version() {
+	Response::log_info(VERSION);
 }

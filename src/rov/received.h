@@ -16,6 +16,7 @@ namespace Command {
 	void setCameraPins(int, int, int, int);
 	void switchCamera(int);
 	void echo(int);
+	void version();
 }
 
 #endif
