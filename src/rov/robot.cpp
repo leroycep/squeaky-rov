@@ -21,12 +21,18 @@ namespace Robot {
 	void Robot::setStepperPins(int direction_pin, int step_pin) {
 		stepper_dir_pin = direction_pin;
 		stepper_step_pin = step_pin;
+		pinMode(stepper_dir_pin, OUTPUT);
+		pinMode(stepper_step_pin, OUTPUT);
 	}
 
 	void Robot::controlStepper(bool direction) {
-		digitalWrite(stepper_dir_pin, direction);
+		if (stepper_previous_direction != direction) {
+			digitalWrite(stepper_dir_pin, direction);
+			delay(1);
+		}
 		digitalWrite(stepper_step_pin, LOW);
 		digitalWrite(stepper_step_pin, HIGH);
+		stepper_previous_direction = direction;
 	}
 
 	Motor* Robot::getMotor(int id) {

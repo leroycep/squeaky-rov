@@ -14,6 +14,7 @@ namespace Robot {
 		static Robot* s_instance;
 		int stepper_step_pin;
 		int stepper_dir_pin;
+		bool stepper_previous_direction;
 		Motor** motors;
 		Sensor::Voltage* voltage_sensor;
 		int multiplexerPins[4];
