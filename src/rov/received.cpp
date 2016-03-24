@@ -15,8 +15,8 @@ void Command::received(int command, int args[])
 		case CMD_SET_PWM_BOUNDS: Command::setPWMBounds(args[0], args[1]); break;
 		case CMD_SET_SAFETY_TIMEOUT: Command::setSafetyTimeout(args[0] << 8 | args[1]); break;
 		// Steppers
-		case CMD_SET_GRIPPER_PIN: Command::setGripperPin(args[0]); break;
-		case CMD_CONTROL_GRIPPER: Command::controlGripper(args[0]); break;
+		case CMD_SET_STEPPER_PINS: Command::setStepperPins(args[0], args[1]); break;
+		case CMD_CONTROL_STEPPER: Command::controlStepper(args[0] >> 4 & 0xF); break;
 		// Sensors
 		case CMD_SET_SENSOR_PIN: Command::setSensorPin(args[0], args[1]); break;
 		case CMD_SENSOR_STATE: Command::setSensorState(args[0], args[1]); break;
@@ -51,13 +51,13 @@ void Command::setSafetyTimeout(int timeout) {
 	Response::log_warning("Command SET_SAFETY_TIMEOUT is deprecated");
 }
 
-void Command::setGripperPin(int pin) {
-	Response::log_info("Set grippper to pin "+String(pin));
-	Response::log_warning("setGripperPin not yet implemented");
+void Command::setStepperPins(int dir, int step) {
+	Robot::Robot::instance()->setStepperPins(dir, step);
+	Response::log_info("Set stepper direction pin to "+String(dir)+" and step pin "+String(step));
 }
 
-void Command::controlGripper(int pwm) {
-	Response::log_warning("controlGripper not yet implemented");
+void Command::controlStepper(int direction) {
+	Robot::Robot::instance()->controlStepper(direction==1);
 }
 
 void Command::setSensorPin(int sensor, int pin) {

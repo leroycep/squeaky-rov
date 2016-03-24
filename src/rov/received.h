@@ -9,8 +9,8 @@ namespace Command {
 	void controlMotor(int, int, int);
 	void setPWMBounds(int, int);
 	void setSafetyTimeout(int);
-	void setGripperPin(int);
-	void controlGripper(int);
+	void setStepperPins(int, int);
+	void controlStepper(int);
 	void setSensorPin(int, int);
 	void setSensorState(int, int);
 	void setCameraPins(int, int, int, int);

@@ -2,6 +2,7 @@
 #ifndef _ROBOT_H_
 #define _ROBOT_H_
 
+#include <Arduino.h>
 #include "motor.h"
 #include "sensor.h"
 
@@ -11,6 +12,8 @@
 namespace Robot {
 	class Robot {
 		static Robot* s_instance;
+		int stepper_step_pin;
+		int stepper_dir_pin;
 		Motor** motors;
 		Sensor::Voltage* voltage_sensor;
 		int multiplexerPins[4];
@@ -18,6 +21,8 @@ namespace Robot {
 
 	  public:
 		void setMultiplexerPins(int, int, int, int);
+		void setStepperPins(int, int);
+		void controlStepper(bool);
 		Motor* getMotor(int);
 		Sensor::Voltage* getVoltageSensor();
 		void update();

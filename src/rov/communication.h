@@ -8,9 +8,9 @@
 #define CMD_SET_PWM_BOUNDS 0x12
 #define CMD_SET_SAFETY_TIMEOUT 0x13
 
-//Gripper
-#define CMD_SET_GRIPPER_PIN 0x20
-#define CMD_CONTROL_GRIPPER 0x21
+//Gripper/Steppers
+#define CMD_SET_STEPPER_PINS 0x20
+#define CMD_CONTROL_STEPPER 0x21
 
 //Sensors
 #define CMD_SET_SENSOR_PIN 0x30
