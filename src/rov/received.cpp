@@ -17,7 +17,7 @@ void Command::received(int command, int args[])
 		// Steppers
 		case CMD_SET_STEPPER_PINS: Command::setStepperPins(args[0], args[1], args[2]); break;
 		case CMD_CONTROL_STEPPER: Command::controlStepper(args[0] >> 4 & 0xF); break;
-		case CMD_SET_STEPPER_STATE: Command::controlStepper(args[0]); break;
+		case CMD_SET_STEPPER_STATE: Command::setStepperState(args[0]); break;
 		// Sensors
 		case CMD_SET_SENSOR_PIN: Command::setSensorPin(args[0], args[1]); break;
 		case CMD_SENSOR_STATE: Command::setSensorState(args[0], args[1]); break;
