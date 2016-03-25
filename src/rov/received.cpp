@@ -15,8 +15,9 @@ void Command::received(int command, int args[])
 		case CMD_SET_PWM_BOUNDS: Command::setPWMBounds(args[0], args[1]); break;
 		case CMD_SET_SAFETY_TIMEOUT: Command::setSafetyTimeout(args[0] << 8 | args[1]); break;
 		// Steppers
-		case CMD_SET_STEPPER_PINS: Command::setStepperPins(args[0], args[1]); break;
+		case CMD_SET_STEPPER_PINS: Command::setStepperPins(args[0], args[1], args[2]); break;
 		case CMD_CONTROL_STEPPER: Command::controlStepper(args[0] >> 4 & 0xF); break;
+		case CMD_SET_STEPPER_STATE: Command::controlStepper(args[0]); break;
 		// Sensors
 		case CMD_SET_SENSOR_PIN: Command::setSensorPin(args[0], args[1]); break;
 		case CMD_SENSOR_STATE: Command::setSensorState(args[0], args[1]); break;
@@ -51,13 +52,17 @@ void Command::setSafetyTimeout(int timeout) {
 	Response::log_warning("Command SET_SAFETY_TIMEOUT is deprecated");
 }
 
-void Command::setStepperPins(int dir, int step) {
-	Robot::Robot::instance()->setStepperPins(dir, step);
-	Response::log_info("Set stepper direction pin to "+String(dir)+" and step pin "+String(step));
+void Command::setStepperPins(int dir, int step, int enabled) {
+	Robot::Robot::instance()->setStepperPins(dir, step, enabled);
+	Response::log_info("Set stepper direction pin to "+String(dir)+", step pin "+String(step)+", and enabled pin "+String(enabled));
 }
 
 void Command::controlStepper(int direction) {
 	Robot::Robot::instance()->controlStepper(direction==1);
+}
+
+void Command::setStepperState(int enabled) {
+	Robot::Robot::instance()->setStepperEnabled(enabled==1);
 }
 
 void Command::setSensorPin(int sensor, int pin) {

@@ -18,11 +18,13 @@ namespace Robot {
 		multiplexerPins[3] = four;
 	}
 
-	void Robot::setStepperPins(int direction_pin, int step_pin) {
+	void Robot::setStepperPins(int direction_pin, int step_pin, int enable_pin) {
 		stepper_dir_pin = direction_pin;
 		stepper_step_pin = step_pin;
+		stepper_enabled_pin = enable_pin;
 		pinMode(stepper_dir_pin, OUTPUT);
 		pinMode(stepper_step_pin, OUTPUT);
+		pinMode(stepper_enabled_pin, OUTPUT);
 	}
 
 	void Robot::controlStepper(bool direction) {
@@ -33,6 +35,10 @@ namespace Robot {
 		digitalWrite(stepper_step_pin, LOW);
 		digitalWrite(stepper_step_pin, HIGH);
 		stepper_previous_direction = direction;
+	}
+
+	void Robot::setStepperEnabled(bool enabled) {
+		digitalWrite(stepper_enabled_pin, !enabled);
 	}
 
 	Motor* Robot::getMotor(int id) {

@@ -11,6 +11,7 @@
 //Gripper/Steppers
 #define CMD_SET_STEPPER_PINS 0x20
 #define CMD_CONTROL_STEPPER 0x21
+#define CMD_SET_STEPPER_STATE 0x22
 
 //Sensors
 #define CMD_SET_SENSOR_PIN 0x30

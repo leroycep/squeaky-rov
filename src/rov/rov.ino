@@ -1,6 +1,7 @@
 #include "communication.h"
 #include "received.h"
 #include "robot.h"
+#include "meta.h"
 
 int command_state = 0;
 int command = -1;
