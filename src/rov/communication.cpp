@@ -12,8 +12,9 @@ namespace Communication {
 			case CMD_CONTROL_STEPPER: return 1;
 			case CMD_SET_STEPPER_STATE: return 1;
 
-			case CMD_SET_SENSOR_PIN: return 2;
 			case CMD_SENSOR_STATE: return 2;
+			case CMD_SET_VOLTAGE_SENSOR_PIN: return 1;
+			case CMD_SET_TEMPERATURE_SENSOR_PIN: return 1;
 
 			case CMD_SET_CAMERA_PINS: return 4;
 			case CMD_SWITCH_CAMERA: return 1;

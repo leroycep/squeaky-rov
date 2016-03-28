@@ -18,6 +18,14 @@ namespace Sensor {
 	  	void setPin(int);
 	  	void update();
 	};
+
+	class Temperature: public Sensor {
+		int pin;
+
+	  public:
+	  	void setPin(int);
+	  	void update();
+	};
 }
 
 #endif

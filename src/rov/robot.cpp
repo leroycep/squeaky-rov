@@ -9,6 +9,7 @@ namespace Robot {
 		}
 
 		voltage_sensor = new Sensor::Voltage();
+		temperature_sensor = new Sensor::Temperature();
 	}
 
 	void Robot::setMultiplexerPins(int one, int two, int three, int four) {
@@ -49,11 +50,16 @@ namespace Robot {
 		return voltage_sensor;
 	}
 
+	Sensor::Temperature* Robot::getTemperatureSensor() {
+		return temperature_sensor;
+	}
+
 	void Robot::update() {
 		for (int i=0; i<MAX_MOTORS; i++) {
 			motors[i]->update();
 		}
 		voltage_sensor->update();
+		temperature_sensor->update();
 	}
 
 	Robot* Robot::instance() {

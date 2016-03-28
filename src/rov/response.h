@@ -7,6 +7,7 @@
 #define RESPONSE_LOG_INFO 0x12
 #define RESPONSE_LOG_DEBUG 0x13
 #define RESPONSE_SENSOR_VOLTAGE 0x20
+#define RESPONSE_SENSOR_TEMPERATURE 0x21
 
 namespace Response {
 	/// !!! LOGGING !!!
@@ -17,6 +18,7 @@ namespace Response {
 
 	/// !!! SENSORS !!!
 	void sensor_voltage(int voltage);
+	void sensor_temperature(int temperature);
 }
 
 #endif

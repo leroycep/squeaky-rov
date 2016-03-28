@@ -36,4 +36,12 @@ namespace Response {
 		Serial.write((byte)voltage>>8);
 		Serial.write((byte)voltage);
 	}
+
+	void sensor_temperature(int temperature) {
+		Serial.write(RESPONSE_SENSOR_TEMPERATURE); // Response id 'sensor_temperature'
+		Serial.write((byte)temperature>>24);
+		Serial.write((byte)temperature>>16);
+		Serial.write((byte)temperature>>8);
+		Serial.write((byte)temperature);
+	}
 }

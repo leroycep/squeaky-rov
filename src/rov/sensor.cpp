@@ -8,15 +8,40 @@ namespace Sensor {
 		this->state = state;
 	}
 
+
+	/* VOLTAGE SENSOR */
+
 	void Voltage::setPin(int pin) {
 		this->pin = pin;
 		pinMode(pin, INPUT);
 	}
 
-	void Voltage::update(void){
-		if (state) {
-			int raw = analogRead(pin);
+	void Voltage::update() {
+		if (this->state) {
+			int raw = analogRead(this->pin);
 			Response::sensor_voltage(raw);
+		}
+	}
+
+	/* TEMPERATURE SENSOR */
+
+	void Temperature::setPin(int pin) {
+		this->pin = pin;
+		pinMode(pin, INPUT);
+	}
+
+	void Temperature::update() {
+		if (this->state) {
+			int raw = analogRead(this->pin);
+			Response::sensor_temperature(raw);
+			/*if (this->reading==-1) {
+			} else {
+				this->reading = (this->reading+analogRead(this->pin))/2;
+			}
+			if (nextSendTime <= millis()) {
+				this->reading = -1;
+				nextSendTime = millis() + 100;
+			}*/
 		}
 	}
 }

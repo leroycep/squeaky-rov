@@ -18,6 +18,7 @@ namespace Robot {
 		bool stepper_previous_direction;
 		Motor** motors;
 		Sensor::Voltage* voltage_sensor;
+		Sensor::Temperature* temperature_sensor;
 		int multiplexerPins[4];
 		Robot();
 
@@ -28,6 +29,7 @@ namespace Robot {
 		void setStepperEnabled(bool);
 		Motor* getMotor(int);
 		Sensor::Voltage* getVoltageSensor();
+		Sensor::Temperature* getTemperatureSensor();
 		void update();
 		static Robot* instance();
 	};
