@@ -34,14 +34,6 @@ namespace Sensor {
 		if (this->state) {
 			int raw = analogRead(this->pin);
 			Response::sensor_temperature(raw);
-			/*if (this->reading==-1) {
-			} else {
-				this->reading = (this->reading+analogRead(this->pin))/2;
-			}
-			if (nextSendTime <= millis()) {
-				this->reading = -1;
-				nextSendTime = millis() + 100;
-			}*/
 		}
 	}
 }

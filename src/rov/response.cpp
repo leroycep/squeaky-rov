@@ -31,17 +31,17 @@ namespace Response {
 	/// !!! SENSORS !!!
 	void sensor_voltage(int voltage) {
 		Serial.write(RESPONSE_SENSOR_VOLTAGE); // Response id 'sensor_voltage'
-		Serial.write((byte)voltage>>24);
-		Serial.write((byte)voltage>>16);
-		Serial.write((byte)voltage>>8);
-		Serial.write((byte)voltage);
+		Serial.write((voltage>>24) & 0xFF);
+		Serial.write((voltage>>16) & 0xFF);
+		Serial.write((voltage>>8) & 0xFF);
+		Serial.write((voltage) & 0xFF);
 	}
 
 	void sensor_temperature(int temperature) {
 		Serial.write(RESPONSE_SENSOR_TEMPERATURE); // Response id 'sensor_temperature'
-		Serial.write((byte)temperature>>24);
-		Serial.write((byte)temperature>>16);
-		Serial.write((byte)temperature>>8);
-		Serial.write((byte)temperature);
+		Serial.write((temperature>>24) & 0xFF);
+		Serial.write((temperature>>16) & 0xFF);
+		Serial.write((temperature>>8) & 0xFF);
+		Serial.write((temperature) & 0xFF);
 	}
 }
