@@ -17,6 +17,7 @@ namespace Command {
 	void setSensorState(int, int);
 	void setVoltageSensorPin(int);
 	void setTemperatureSensorPin(int);
+	void setDepthSensorDensity(int);
 
 	void setCameraPins(int, int, int, int, int, int, int, int);
 	void switchCamera(int, int);

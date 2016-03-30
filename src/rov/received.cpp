@@ -22,6 +22,7 @@ void Command::received(int command, int args[])
 		case CMD_SENSOR_STATE: Command::setSensorState(args[0], args[1]); break;
 		case CMD_SET_VOLTAGE_SENSOR_PIN: Command::setVoltageSensorPin(args[0]); break;
 		case CMD_SET_TEMPERATURE_SENSOR_PIN: Command::setTemperatureSensorPin(args[0]); break;
+		case CMD_SET_DEPTH_SENSOR_DENSITY: Command::setDepthSensorDensity((args[0] << 24)|(args[1] << 16)|(args[2] << 8)|(args[3])); break;
 		// Cameras
 		case CMD_SET_CAMERA_PINS: Command::setCameraPins(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); break;
 		case CMD_SWITCH_CAMERA: Command::switchCamera((args[0]>>4) & 0xF, (args[0]) & 0xF); break;
@@ -98,6 +99,11 @@ void Command::setVoltageSensorPin(int pin) {
 void Command::setTemperatureSensorPin(int pin) {
 	Robot::Robot::instance()->getTemperatureSensor()->setPin(pin);
 	Response::log_info("Set temperature sensor to pin "+String(pin));
+}
+
+void Command::setDepthSensorDensity(int density) {
+	Robot::Robot::instance()->getDepthSensor()->setDensity((float)density);
+	Response::log_info("Set the density to "+String(density));
 }
 
 

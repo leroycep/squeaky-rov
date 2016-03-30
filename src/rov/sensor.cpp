@@ -2,7 +2,6 @@
 #include <Arduino.h>
 #include "sensor.h"
 #include "response.h"
-#include "lib/MS5837.h"
 
 namespace Sensor {
 	void Sensor::setState(bool state) {

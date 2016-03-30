@@ -15,6 +15,7 @@ namespace Communication {
 			case CMD_SENSOR_STATE: return 2;
 			case CMD_SET_VOLTAGE_SENSOR_PIN: return 1;
 			case CMD_SET_TEMPERATURE_SENSOR_PIN: return 1;
+			case CMD_SET_DEPTH_SENSOR_DENSITY: return 4;
 
 			case CMD_SET_CAMERA_PINS: return 8;
 			case CMD_SWITCH_CAMERA: return 1;

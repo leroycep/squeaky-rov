@@ -2,7 +2,7 @@
 #ifndef _SENSOR_H_
 #define _SENSOR_H_
 
-#include "lib/MS5837.h"
+#include "MS5837.h"
 
 namespace Sensor {
 	class Sensor {

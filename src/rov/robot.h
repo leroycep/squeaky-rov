@@ -19,6 +19,7 @@ namespace Robot {
 		Motor** motors;
 		Sensor::Voltage* voltage_sensor;
 		Sensor::Temperature* temperature_sensor;
+		Sensor::Depth* depth_sensor;
 		int multiplexerPaPins[4];
 		int multiplexerRePins[4];
 		Robot();
@@ -34,6 +35,7 @@ namespace Robot {
 		Motor* getMotor(int);
 		Sensor::Voltage* getVoltageSensor();
 		Sensor::Temperature* getTemperatureSensor();
+		Sensor::Depth* getDepthSensor();
 		void update();
 		static Robot* instance();
 	};

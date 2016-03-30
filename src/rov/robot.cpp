@@ -83,6 +83,10 @@ namespace Robot {
 		return temperature_sensor;
 	}
 
+	Sensor::Depth* Robot::getDepthSensor() {
+		return depth_sensor;
+	}
+
 	void Robot::update() {
 		for (int i=0; i<MAX_MOTORS; i++) {
 			motors[i]->update();
