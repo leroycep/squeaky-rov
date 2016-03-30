@@ -12,11 +12,40 @@ namespace Robot {
 		temperature_sensor = new Sensor::Temperature();
 	}
 
-	void Robot::setMultiplexerPins(int one, int two, int three, int four) {
-		multiplexerPins[0] = one;
-		multiplexerPins[1] = two;
-		multiplexerPins[2] = three;
-		multiplexerPins[3] = four;
+	void Robot::setMultiplexerPaPins(int pa, int re, int ci, int vo) {
+		multiplexerPaPins[0] = pa;
+		multiplexerPaPins[1] = re;
+		multiplexerPaPins[2] = ci;
+		multiplexerPaPins[3] = vo;
+		pinMode(multiplexerPaPins[0], OUTPUT);
+		pinMode(multiplexerPaPins[1], OUTPUT);
+		pinMode(multiplexerPaPins[2], OUTPUT);
+		pinMode(multiplexerPaPins[3], OUTPUT);
+	}
+
+	void Robot::setMultiplexerRePins(int pa, int re, int ci, int vo) {
+		multiplexerRePins[0] = pa;
+		multiplexerRePins[1] = re;
+		multiplexerRePins[2] = ci;
+		multiplexerRePins[3] = vo;
+		pinMode(multiplexerRePins[0], OUTPUT);
+		pinMode(multiplexerRePins[1], OUTPUT);
+		pinMode(multiplexerRePins[2], OUTPUT);
+		pinMode(multiplexerRePins[3], OUTPUT);
+	}
+
+	void Robot::controlMultiplexerPa(int camera) {
+		digitalWrite(multiplexerPaPins[0], (camera & 0x1) == 0x1);
+		digitalWrite(multiplexerPaPins[1], (camera & 0x2) == 0x2);
+		digitalWrite(multiplexerPaPins[2], (camera & 0x4) == 0x4);
+		digitalWrite(multiplexerPaPins[3], (camera & 0x8) == 0x8);
+	}
+
+	void Robot::controlMultiplexerRe(int camera) {
+		digitalWrite(multiplexerRePins[0], (camera & 0x1) == 0x1);
+		digitalWrite(multiplexerRePins[1], (camera & 0x2) == 0x2);
+		digitalWrite(multiplexerRePins[2], (camera & 0x4) == 0x4);
+		digitalWrite(multiplexerRePins[3], (camera & 0x8) == 0x8);
 	}
 
 	void Robot::setStepperPins(int direction_pin, int step_pin, int enable_pin) {

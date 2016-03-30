@@ -19,11 +19,15 @@ namespace Robot {
 		Motor** motors;
 		Sensor::Voltage* voltage_sensor;
 		Sensor::Temperature* temperature_sensor;
-		int multiplexerPins[4];
+		int multiplexerPaPins[4];
+		int multiplexerRePins[4];
 		Robot();
 
 	  public:
-		void setMultiplexerPins(int, int, int, int);
+		void setMultiplexerPaPins(int, int, int, int);
+		void setMultiplexerRePins(int, int, int, int);
+		void controlMultiplexerPa(int);
+		void controlMultiplexerRe(int);
 		void setStepperPins(int, int, int);
 		void controlStepper(bool);
 		void setStepperEnabled(bool);

@@ -18,8 +18,8 @@ namespace Command {
 	void setVoltageSensorPin(int);
 	void setTemperatureSensorPin(int);
 
-	void setCameraPins(int, int, int, int);
-	void switchCamera(int);
+	void setCameraPins(int, int, int, int, int, int, int, int);
+	void switchCamera(int, int);
 	
 	void echo(int);
 	void version();

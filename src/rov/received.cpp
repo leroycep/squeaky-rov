@@ -23,8 +23,8 @@ void Command::received(int command, int args[])
 		case CMD_SET_VOLTAGE_SENSOR_PIN: Command::setVoltageSensorPin(args[0]); break;
 		case CMD_SET_TEMPERATURE_SENSOR_PIN: Command::setTemperatureSensorPin(args[0]); break;
 		// Cameras
-		case CMD_SET_CAMERA_PINS: Command::setCameraPins(args[0], args[1], args[2], args[3]); break;
-		case CMD_SWITCH_CAMERA: Command::switchCamera(args[0]); break;
+		case CMD_SET_CAMERA_PINS: Command::setCameraPins(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); break;
+		case CMD_SWITCH_CAMERA: Command::switchCamera((args[0]>>4) & 0xF, (args[0]) & 0xF); break;
 		// Misc
 		case CMD_ECHO: Command::echo(args[0]); break;
 		case CMD_VERSION: Command::version(); break;
@@ -103,12 +103,19 @@ void Command::setTemperatureSensorPin(int pin) {
 
 // !!!!! CAMERAS !!!!!
 
-void Command::setCameraPins(int pinA, int pinB, int pinC, int pinD) {
-	Response::log_warning("setCameraPins not yet implemented");
+void Command::setCameraPins(int pa, int re, int ci, int vo, int mu, int xa, int ze, int bi) {
+	Robot::Robot::instance()->setMultiplexerPaPins(pa, re, ci, vo);
+	Response::log_info("Set multiplexer A to "+String(pa)+", "+String(re)+", "+String(ci)+", "+String(vo));
+	Robot::Robot::instance()->setMultiplexerRePins(mu, xa, ze, bi);
+	Response::log_info("Set multiplexer B to "+String(mu)+", "+String(xa)+", "+String(ze)+", "+String(bi));
 }
 
-void Command::switchCamera(int camera) {
-	Response::log_warning("switchCamera not yet implemented");
+void Command::switchCamera(int flags, int camera) {
+	if ((flags & 0x1)==0x1) {
+		Robot::Robot::instance()->controlMultiplexerPa(camera);
+	} else {
+		Robot::Robot::instance()->controlMultiplexerRe(camera);
+	}
 }
 
 

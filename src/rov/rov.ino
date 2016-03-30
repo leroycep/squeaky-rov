@@ -6,7 +6,7 @@
 int command_state = 0;
 int command = -1;
 int bytes_left = 0;
-int command_buffer[4];
+int command_buffer[10];
 int buffer_pos = 0;
 
 Robot::Robot* Robot::Robot::s_instance = 0;
