@@ -2,6 +2,8 @@
 #ifndef _SENSOR_H_
 #define _SENSOR_H_
 
+#include "lib/MS5837.h"
+
 namespace Sensor {
 	class Sensor {
 	  protected:
@@ -24,6 +26,14 @@ namespace Sensor {
 
 	  public:
 	  	void setPin(int);
+	  	void update();
+	};
+
+	class Depth: public Sensor {
+		MS5837 sensor;
+
+	  public:
+	  	void setDensity(float);
 	  	void update();
 	};
 }

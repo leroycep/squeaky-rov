@@ -1,3 +1,4 @@
+#include <Wire.h>
 #include "communication.h"
 #include "received.h"
 #include "robot.h"
@@ -14,6 +15,7 @@ Robot::Robot* Robot::Robot::s_instance = 0;
 void setup()
 {
 	Serial.begin(9600);
+	Wire.begin();
 	change_pwm_frequency();
 }
 

@@ -8,6 +8,7 @@
 #define RESPONSE_LOG_DEBUG 0x13
 #define RESPONSE_SENSOR_VOLTAGE 0x20
 #define RESPONSE_SENSOR_TEMPERATURE 0x21
+#define RESPONSE_SENSOR_DEPTH 0x22
 
 namespace Response {
 	/// !!! LOGGING !!!
@@ -19,6 +20,7 @@ namespace Response {
 	/// !!! SENSORS !!!
 	void sensor_voltage(int voltage);
 	void sensor_temperature(int temperature);
+	void sensor_depth(float depth);
 }
 
 #endif

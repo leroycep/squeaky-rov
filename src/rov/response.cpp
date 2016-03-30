@@ -44,4 +44,15 @@ namespace Response {
 		Serial.write((temperature>>8) & 0xFF);
 		Serial.write((temperature) & 0xFF);
 	}
+
+	void sensor_depth(float depth) {
+		// Does not exist for now, because I don't want to figure out how to 
+		// convert a float into an array of bytes.
+		log_info("[Depth]"+String(depth));
+		/*Serial.write(RESPONSE_SENSOR_DEPTH); // Response id 'sensor_temperature'
+		Serial.write((depth>>24) & 0xFF);
+		Serial.write((depth>>16) & 0xFF);
+		Serial.write((depth>>8) & 0xFF);
+		Serial.write((depth) & 0xFF);*/
+	}
 }
