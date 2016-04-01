@@ -6,7 +6,7 @@
 #include "motor.h"
 #include "sensor.h"
 
-#define MAX_MOTORS 8
+#define MAX_MOTORS 9
 #define MAX_SENSORS 1
 
 namespace Robot {
@@ -16,6 +16,7 @@ namespace Robot {
 		int stepper_dir_pin;
 		int stepper_enabled_pin;
 		int stepper_steps;
+		long stepper_next_step;
 		Motor** motors;
 		Sensor::Voltage* voltage_sensor;
 		Sensor::Temperature* temperature_sensor;

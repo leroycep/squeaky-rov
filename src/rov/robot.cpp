@@ -1,5 +1,6 @@
 
 #include "robot.h"
+#include "response.h"
 
 namespace Robot {
 	Robot::Robot() {
@@ -60,6 +61,7 @@ namespace Robot {
 	void Robot::controlStepper(bool direction, int amount) {
 		digitalWrite(stepper_dir_pin, direction);
 		this->stepper_steps = amount;
+		this->stepper_next_step = millis();
 	}
 
 	void Robot::setStepperEnabled(bool enabled) {
@@ -67,6 +69,9 @@ namespace Robot {
 	}
 
 	Motor* Robot::getMotor(int id) {
+		if (id >= MAX_MOTORS) {
+			Response::log_warning("Invalid motor id "+String(id));
+		}
 		return motors[id];
 	}
 
@@ -86,10 +91,11 @@ namespace Robot {
 		for (int i=0; i<MAX_MOTORS; i++) {
 			motors[i]->update();
 		}
-		if (this->stepper_steps > 0) {
+		if (this->stepper_steps > 0 && millis() >= this->stepper_next_step) {
 			digitalWrite(stepper_step_pin, LOW);
 			digitalWrite(stepper_step_pin, HIGH);
 			this->stepper_steps -= 1;
+			this->stepper_next_step = millis()+1;
 		}
 		voltage_sensor->update();
 		temperature_sensor->update();
