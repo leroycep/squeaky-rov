@@ -11,7 +11,7 @@ namespace Command {
 	void setSafetyTimeout(int);
 
 	void setStepperPins(int, int, int);
-	void controlStepper(bool, int);
+	void controlStepper(bool, bool);
 	void setStepperState(int);
 
 	void setSensorState(int, int);

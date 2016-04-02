@@ -15,8 +15,6 @@ namespace Robot {
 		int stepper_step_pin;
 		int stepper_dir_pin;
 		int stepper_enabled_pin;
-		int stepper_steps;
-		long stepper_next_step;
 		Motor** motors;
 		Sensor::Voltage* voltage_sensor;
 		Sensor::Temperature* temperature_sensor;
@@ -31,7 +29,7 @@ namespace Robot {
 		void controlMultiplexerPa(int);
 		void controlMultiplexerRe(int);
 		void setStepperPins(int, int, int);
-		void controlStepper(bool, int);
+		void controlStepper(bool, bool);
 		void setStepperEnabled(bool);
 		Motor* getMotor(int);
 		Sensor::Voltage* getVoltageSensor();

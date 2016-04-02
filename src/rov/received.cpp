@@ -16,7 +16,7 @@ void Command::received(int command, int args[])
 		case CMD_SET_SAFETY_TIMEOUT: Command::setSafetyTimeout(args[0] << 8 | args[1]); break;
 		// Steppers
 		case CMD_SET_STEPPER_PINS: Command::setStepperPins(args[0], args[1], args[2]); break;
-		case CMD_CONTROL_STEPPER: Command::controlStepper((args[0] & 0x80)==0x80, args[0] & 0x7F); break;
+		case CMD_CONTROL_STEPPER: Command::controlStepper((args[0] & 0x80)==0x80, (args[0] & 0x40)==0x40); break;
 		case CMD_SET_STEPPER_STATE: Command::setStepperState(args[0]); break;
 		// Sensors
 		case CMD_SENSOR_STATE: Command::setSensorState(args[0], args[1]); break;
@@ -63,8 +63,8 @@ void Command::setStepperPins(int dir, int step, int enabled) {
 	Response::log_info("Set stepper direction pin to "+String(dir)+", step pin "+String(step)+", and enabled pin "+String(enabled));
 }
 
-void Command::controlStepper(bool direction, int amount) {
-	Robot::Robot::instance()->controlStepper(direction, amount);
+void Command::controlStepper(bool direction, bool running) {
+	Robot::Robot::instance()->controlStepper(direction, running);
 }
 
 void Command::setStepperState(int enabled) {

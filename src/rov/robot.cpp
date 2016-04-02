@@ -58,10 +58,9 @@ namespace Robot {
 		pinMode(stepper_enabled_pin, OUTPUT);
 	}
 
-	void Robot::controlStepper(bool direction, int amount) {
+	void Robot::controlStepper(bool direction, bool running) {
 		digitalWrite(stepper_dir_pin, direction);
-		this->stepper_steps = amount;
-		this->stepper_next_step = millis();
+		analogWrite(stepper_step_pin, running ? 0xFF : 0x00);
 	}
 
 	void Robot::setStepperEnabled(bool enabled) {
@@ -90,12 +89,6 @@ namespace Robot {
 	void Robot::update() {
 		for (int i=0; i<MAX_MOTORS; i++) {
 			motors[i]->update();
-		}
-		if (this->stepper_steps > 0 && millis() >= this->stepper_next_step) {
-			digitalWrite(stepper_step_pin, LOW);
-			digitalWrite(stepper_step_pin, HIGH);
-			this->stepper_steps -= 1;
-			this->stepper_next_step = millis()+1;
 		}
 		voltage_sensor->update();
 		temperature_sensor->update();

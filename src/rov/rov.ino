@@ -99,7 +99,7 @@ void change_pwm_frequency() {
 	*/
 	int my_prescalar = 2;
 	TCCR0B |= my_prescalar;
-	TCCR1B |= my_prescalar;
+	TCCR1B |= 3;
 	TCCR2B |= my_prescalar;
 	TCCR3B |= my_prescalar;
 	TCCR4B |= my_prescalar;
