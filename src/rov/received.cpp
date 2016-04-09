@@ -85,6 +85,10 @@ void Command::setSensorState(int sensor, int state) {
 			Robot::Robot::instance()->getTemperatureSensor()->setState(state==1);
 			Response::log_info("Turned temperature sensor "+stateString);
 			break;
+		case 0x33: // Temperature Sensor
+			Robot::Robot::instance()->getDepthSensor()->setState(state==1);
+			Response::log_info("Turned depth sensor "+stateString);
+			break;
 		default:
 			Response::log_warning("Unknown sensor "+String(sensor));
 			break;

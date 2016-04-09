@@ -11,6 +11,7 @@ namespace Robot {
 
 		voltage_sensor = new Sensor::Voltage();
 		temperature_sensor = new Sensor::Temperature();
+		depth_sensor = new Sensor::Depth();
 	}
 
 	void Robot::setMultiplexerPaPins(int pa, int re, int ci, int vo) {
@@ -92,6 +93,7 @@ namespace Robot {
 		}
 		voltage_sensor->update();
 		temperature_sensor->update();
+		depth_sensor->update();
 	}
 
 	Robot* Robot::instance() {
