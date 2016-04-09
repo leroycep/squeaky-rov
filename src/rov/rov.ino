@@ -7,8 +7,9 @@
 int command_state = 0;
 int command = -1;
 int bytes_left = 0;
-int command_buffer[10];
+int command_buffer[16];
 int buffer_pos = 0;
+int command_parity = 0;
 
 Robot::Robot* Robot::Robot::s_instance = 0;
 
@@ -32,19 +33,20 @@ void check_for_commands() /// State machine!
 		command = -1;
 		bytes_left = 0;
 		buffer_pos = 0;
-	}
-	if(command_state==1) { // Read command byte
+		command_parity = 0;
+	} else if(command_state==1) { // Read command byte
 		if (Serial.available() > 0)
 		{
 			command = Serial.read();
+			command_parity ^= command;
 			bytes_left = Communication::getCommandLength(command);
 			command_state = 2;
 		}
-	}
-	if(command_state==2) {// Read bytes into the buffer
+	} else if(command_state==2) {// Read bytes into the buffer
 		while (Serial.available() > 0 && bytes_left>0)
 		{
 			command_buffer[buffer_pos] = Serial.read();
+			command_parity ^= command_buffer[buffer_pos];
 			buffer_pos++;
 			bytes_left--;
 		}
@@ -52,10 +54,12 @@ void check_for_commands() /// State machine!
 		{
 			command_state = 3;
 		}
-	}
-	if(command_state==3) { // Parse the command
-		Command::received(command, command_buffer);
-		command_state=0;
+	} else if(command_state==3) { // Parse the command
+		int parity = Serial.read();
+		if (parity == command_parity) {
+		    Command::received(command, command_buffer);
+		}
+		command_state = 0;
 	}
 }
 
