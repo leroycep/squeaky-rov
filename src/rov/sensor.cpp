@@ -33,7 +33,14 @@ namespace Sensor {
 	void Temperature::update() {
 		if (this->state) {
 			int raw = analogRead(this->pin);
-			Response::sensor_temperature(raw);
+			this->total += raw;
+			count++;
+		}
+		if (millis() >= this->nextSend) {
+			Response::sensor_temperature(this->total/count);
+			total = 0;
+			count = 0;
+			this->nextSend = millis() + 100;
 		}
 	}
 

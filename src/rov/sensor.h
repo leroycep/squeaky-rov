@@ -23,6 +23,9 @@ namespace Sensor {
 
 	class Temperature: public Sensor {
 		int pin;
+		long nextSend;
+		long total;
+		int count;
 
 	  public:
 	  	void setPin(int);
