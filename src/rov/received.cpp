@@ -85,7 +85,7 @@ void Command::setSensorState(int sensor, int state) {
 			Robot::Robot::instance()->getTemperatureSensor()->setState(state==1);
 			Response::log_info("Turned temperature sensor "+stateString);
 			break;
-		case 0x33: // Temperature Sensor
+		case 0x33: // Depth Sensor
 			Robot::Robot::instance()->getDepthSensor()->setState(state==1);
 			Response::log_info("Turned depth sensor "+stateString);
 			break;
@@ -106,8 +106,9 @@ void Command::setTemperatureSensorPin(int pin) {
 }
 
 void Command::setDepthSensorDensity(int density) {
-	Robot::Robot::instance()->getDepthSensor()->setDensity((float)density);
-	Response::log_info("Set the density to "+String(density));
+	float d = (float)density;
+	Robot::Robot::instance()->getDepthSensor()->setDensity(d);
+	Response::log_info("Set the density to "+String(d));
 }
 
 

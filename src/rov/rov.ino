@@ -88,6 +88,10 @@ void change_pwm_frequency() {
 	TCCR4B &= ~my_eraser;
 
 	/* The third column is for timer 0, which has a different set of frequencies.
+	Also note, timer 0 is used for timing, and will affect all code calling
+	delay. The default prescalar is 3 (980 Hz), so adjust all times according to
+	the ratio between prescalar 3 (980 Hz), and the new prescalar, which is in
+	this case 2 (7800 Hz). (The ratio is about 8 in this case.)
 	|prescalar|frequency|frequency|
 	|---------|---------|---------|
 	|1        |31000    |62000    |

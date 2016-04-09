@@ -19,7 +19,9 @@ void MS5837::init() {
 	Wire.endTransmission();
 
 	// Wait for reset to complete
-	delay(10);
+	delay(10 * 8);
+	// /\ The times 8 is because we mess around with timer0, see rov.ino for
+	// details.
 
 	// Read calibration values and CRC
 	for ( uint8_t i = 0 ; i < 8 ; i++ ) {
@@ -52,7 +54,9 @@ void MS5837::read() {
 	Wire.write(MS5837_CONVERT_D1_8192);
 	Wire.endTransmission();
 
-	delay(20); // Max conversion time per datasheet
+	delay(20 * 8); // Max conversion time per datasheet
+	// /\ The times 8 is because we mess around with timer0, see rov.ino for
+	// details.
 	
 	Wire.beginTransmission(MS5837_ADDR);
 	Wire.write(MS5837_ADC_READ);
@@ -69,7 +73,9 @@ void MS5837::read() {
 	Wire.write(MS5837_CONVERT_D2_8192);
 	Wire.endTransmission();
 
-	delay(20); // Max conversion time per datasheet
+	delay(20 * 8); // Max conversion time per datasheet
+	// /\ The times 8 is because we mess around with timer0, see rov.ino for
+	// details.
 	
 	Wire.beginTransmission(MS5837_ADDR);
 	Wire.write(MS5837_ADC_READ);

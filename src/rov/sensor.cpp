@@ -46,8 +46,8 @@ namespace Sensor {
 
 	void Depth::update() {
 		if (this->state) {
-			sensor.read();
-			Response::sensor_depth(sensor.depth());
+			this->sensor.read();
+			Response::sensor_depth(this->sensor.depth());
 			this->state = false;
 		}
 	}
