@@ -55,6 +55,7 @@ namespace Sensor {
 		if (this->state) {
 			this->sensor.read();
 			Response::sensor_depth(this->sensor.depth());
+			Response::log_info("[Temperature]"+String(this->sensor.temperature()));
 			this->state = false;
 		}
 	}
