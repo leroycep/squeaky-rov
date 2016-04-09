@@ -61,7 +61,7 @@ namespace Robot {
 
 	void Robot::controlStepper(bool direction, bool running) {
 		digitalWrite(stepper_dir_pin, direction);
-		analogWrite(stepper_step_pin, running ? 0xFF : 0x00);
+		analogWrite(stepper_step_pin, running ? 0x88 : 0x00);
 	}
 
 	void Robot::setStepperEnabled(bool enabled) {
