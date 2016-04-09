@@ -3,13 +3,14 @@
 #include "received.h"
 #include "robot.h"
 #include "meta.h"
+#include "response.h"
 
 int command_state = 0;
 int command = -1;
+int command_length = -1;
 int bytes_left = 0;
 int command_buffer[16];
 int buffer_pos = 0;
-int command_parity = 0;
 
 Robot::Robot* Robot::Robot::s_instance = 0;
 
@@ -31,22 +32,21 @@ void check_for_commands() /// State machine!
 	if(command_state==0) { // Reset the state machine
 		command_state = 1;
 		command = -1;
+		command_length = 0;
 		bytes_left = 0;
 		buffer_pos = 0;
-		command_parity = 0;
 	} else if(command_state==1) { // Read command byte
 		if (Serial.available() > 0)
 		{
 			command = Serial.read();
-			command_parity ^= command;
-			bytes_left = Communication::getCommandLength(command);
+			command_length = Communication::getCommandLength(command);
+			bytes_left = command_length + 1;
 			command_state = 2;
 		}
 	} else if(command_state==2) {// Read bytes into the buffer
 		while (Serial.available() > 0 && bytes_left>0)
 		{
 			command_buffer[buffer_pos] = Serial.read();
-			command_parity ^= command_buffer[buffer_pos];
 			buffer_pos++;
 			bytes_left--;
 		}
@@ -55,9 +55,16 @@ void check_for_commands() /// State machine!
 			command_state = 3;
 		}
 	} else if(command_state==3) { // Parse the command
-		int parity = Serial.read();
-		if (parity == command_parity) {
+		int crc = command;
+		for (int i=0; i < command_length; i++) {
+			crc ^= command_buffer[i];
+		}
+		int what_the_crc_should_be = command_buffer[command_length];
+		if (crc == what_the_crc_should_be) {
 		    Command::received(command, command_buffer);
+		} else {
+			Response::log_info("Parity: "+String(crc));
+			Response::log_info("Expected: "+String(what_the_crc_should_be));
 		}
 		command_state = 0;
 	}
