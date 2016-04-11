@@ -39,7 +39,7 @@ namespace Sensor {
 				Response::sensor_temperature(this->total/count);
 				total = 0;
 				count = 0;
-				this->nextSend = millis() + 100;
+				this->nextSend = millis() + 800;
 			}
 		}
 	}
